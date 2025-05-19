@@ -10,10 +10,11 @@ public class InputView {
 
     public static int enterLottoPuchase() {
         System.out.println(INPUT_PURCHASE_MESSAGE);
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static String enterLottoWinningNumber() {
+        System.out.println();
         System.out.println(INPUT_WINNIGNUMBER_MESSAGE);
         return scanner.nextLine();
     }

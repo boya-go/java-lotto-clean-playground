@@ -29,4 +29,15 @@ public class LottoNumbers {
     public List<Integer> lottoNumbersToList() {
         return List.copyOf(lottoNumbers);
     }
+
+    private boolean contains(int number) {
+        return lottoNumbers.contains(number);
+    }
+
+    public int matchCount(LottoNumbers other) {
+        return (int)lottoNumbers.stream()
+                .filter(other::contains)
+                .count();
+    }
+
 }

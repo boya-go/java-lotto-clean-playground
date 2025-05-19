@@ -13,4 +13,8 @@ public class Lotto {
     public List<Integer> getNumbersAsList() {
         return lottoNumbers.lottoNumbersToList();
     }
+
+    public int matchCountWinnings(LottoNumbers winningNumbers) {
+        return lottoNumbers.matchCount(winningNumbers);
+    }
 }

@@ -10,10 +10,9 @@ public class LottoWinningNumber {
     private static final String WINNING_NUMBER_NOT_ENTERED = "당첨 번호를 입력해야 합니다.";
     private final LottoNumbers winningNumbers;
 
-    public LottoWinningNumber(final String winningNumbers) {
-        validateEmpty(winningNumbers);
-        this.winningNumbers = new LottoNumbers(parseWinningNumbers(winningNumbers));
-
+    public LottoWinningNumber(final String input) {
+        validateEmpty(input);
+        this.winningNumbers = new LottoNumbers(parseWinningNumbers(input));
     }
 
     public LottoNumbers getWinningNumbers() {
