@@ -30,7 +30,7 @@ public class LottoNumbers {
         return List.copyOf(lottoNumbers);
     }
 
-    private boolean contains(int number) {
+    public boolean contains(int number) {
         return lottoNumbers.contains(number);
     }
 

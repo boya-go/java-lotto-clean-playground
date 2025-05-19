@@ -22,7 +22,8 @@ public class LottoController {
         OutputView.printLottoTicket(lottoTicket.getTicket());
 
         String winningLottoNumbers = InputView.enterLottoWinningNumber();
-        LottoWinningNumber winningLotto = new LottoWinningNumber(winningLottoNumbers);
+        int bonusBall = InputView.enterLottoBonusBall();
+        LottoWinningNumber winningLotto = new LottoWinningNumber(winningLottoNumbers, bonusBall);
         WinningStatistics winningStatistics = new WinningStatistics(winningLotto, lottoTicket);
         double profitRate = LottoProfitCalculator.calculateProfit(winningStatistics, purchaseAmount);
 

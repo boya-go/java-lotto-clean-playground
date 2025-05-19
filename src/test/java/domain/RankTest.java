@@ -10,10 +10,11 @@ class RankTest {
 
         SoftAssertions softly = new SoftAssertions();
 
-        softly.assertThat(Rank.matchCountOf(3)).isEqualTo(Rank.THREE);
-        softly.assertThat(Rank.matchCountOf(4)).isEqualTo(Rank.FOUR);
-        softly.assertThat(Rank.matchCountOf(5)).isEqualTo(Rank.FIVE);
-        softly.assertThat(Rank.matchCountOf(6)).isEqualTo(Rank.ALL);
+        softly.assertThat(Rank.matchCountOf(3,true)).isEqualTo(Rank.FIFTH);
+        softly.assertThat(Rank.matchCountOf(4,false)).isEqualTo(Rank.FOURTH);
+        softly.assertThat(Rank.matchCountOf(5, false)).isEqualTo(Rank.THIRD);
+        softly.assertThat(Rank.matchCountOf(5,true)).isEqualTo(Rank.SECOND);
+        softly.assertThat(Rank.matchCountOf(6,false)).isEqualTo(Rank.FIRST);
 
         softly.assertAll();
     }
@@ -23,9 +24,9 @@ class RankTest {
 
         SoftAssertions softly = new SoftAssertions();
 
-        softly.assertThat(Rank.matchCountOf(0)).isEqualTo(Rank.NONE);
-        softly.assertThat(Rank.matchCountOf(1)).isEqualTo(Rank.NONE);
-        softly.assertThat(Rank.matchCountOf(2)).isEqualTo(Rank.NONE);
+        softly.assertThat(Rank.matchCountOf(0,true)).isEqualTo(Rank.NONE);
+        softly.assertThat(Rank.matchCountOf(1,true)).isEqualTo(Rank.NONE);
+        softly.assertThat(Rank.matchCountOf(2,false)).isEqualTo(Rank.NONE);
 
         softly.assertAll();
     }
