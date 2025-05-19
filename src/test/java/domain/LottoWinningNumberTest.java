@@ -22,9 +22,8 @@ public class LottoWinningNumberTest {
 
             LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(input,bonusBall);
 
-            assertThat(lottoWinningNumber.getWinningNumbers())
-                    .isNotNull()
-                    .extracting("lottoNumbers")
+            assertThat(lottoWinningNumber.getWinningNumbers().getNumbers())
+                    .extracting(LottoNumber::getLottoNumber)
                     .asList()
                     .containsExactly(1, 2, 3, 4, 5, 6);
         }

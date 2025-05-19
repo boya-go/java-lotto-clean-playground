@@ -9,9 +9,13 @@ public class LottoTicket {
     private final List<Lotto> ticket;
 
     public LottoTicket(int purchaseAmount, LottoAmountCalculator calculator, LottoNumberGenerator generator) {
-        int count = calculator.CalculateLottoAmount(purchaseAmount);
-        this.ticket = IntStream.range(0, count)
-                .mapToObj(i -> new Lotto(generator.generate()))
+        int count = calculator.calculateLottoAmount(purchaseAmount);
+        this.ticket = createTicket(count, generator);
+    }
+
+    private List<Lotto> createTicket(int count, LottoNumberGenerator generator) {
+        return IntStream.range(0, count)
+                .mapToObj(i -> generator.generate())
                 .collect(Collectors.toList());
     }
 

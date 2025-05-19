@@ -22,7 +22,7 @@ public class OutputView {
 
     public static void printLottoTicket(List<Lotto> lottoTicket) {
         for (Lotto lotto : lottoTicket) {
-            System.out.println(lotto.getNumbersAsList());
+            System.out.println(lotto.getNumbers());
         }
     }
 

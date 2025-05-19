@@ -22,7 +22,7 @@ public class LottoAmountCalculatorTest {
         @DisplayName("입력값이 0 이하인 경우")
         void validatePurchaseAmount_입력값0이하_예외처리(int parchaseAmount) {
 
-            assertThatThrownBy(() -> lottoAmountCalculator.CalculateLottoAmount(parchaseAmount))
+            assertThatThrownBy(() -> lottoAmountCalculator.calculateLottoAmount(parchaseAmount))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("금액은 0원보다 커야 합니다.");
 
@@ -33,7 +33,7 @@ public class LottoAmountCalculatorTest {
         @DisplayName("입력값이 천원 단위가 아닌 경우")
         void validatePurchaseAmount_입력값천원단위아님_예외처리(int parchaseAmount) {
 
-            assertThatThrownBy((() -> lottoAmountCalculator.CalculateLottoAmount(parchaseAmount)))
+            assertThatThrownBy((() -> lottoAmountCalculator.calculateLottoAmount(parchaseAmount)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("금액은 1000원 단위로만 입력할 수 있습니다.");
         }
@@ -52,7 +52,7 @@ public class LottoAmountCalculatorTest {
         @DisplayName("구매 매수 테스트")
         void CalculateLottoAmount(int parchaseAmount, int expectedAmount) {
 
-            assertThat(lottoAmountCalculator.CalculateLottoAmount(parchaseAmount))
+            assertThat(lottoAmountCalculator.calculateLottoAmount(parchaseAmount))
                     .isEqualTo(expectedAmount);
         }
     }
