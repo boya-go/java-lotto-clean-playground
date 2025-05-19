@@ -11,7 +11,7 @@ public class LottoNumberGenerator {
     private static final int LOTTO_END_NUMBER = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    public final List<Integer> generate() {
+    public final LottoNumbers generate() {
         List<Integer> numbers = IntStream.rangeClosed(LOTTO_START_NUMBER,LOTTO_END_NUMBER)
                 .boxed()
                 .collect(Collectors.toList());
@@ -21,6 +21,6 @@ public class LottoNumberGenerator {
         List<Integer> selectedNumbers = numbers.subList(0,LOTTO_NUMBER_COUNT);
         Collections.sort(selectedNumbers);
 
-        return selectedNumbers;
+        return new LottoNumbers(selectedNumbers);
     };
 }

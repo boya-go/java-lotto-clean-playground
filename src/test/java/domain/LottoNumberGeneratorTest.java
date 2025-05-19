@@ -12,11 +12,10 @@ public class LottoNumberGeneratorTest {
     @Test
     @DisplayName("로또번호는 0에서 45 사이 숫자들로 구성된다.")
     void generate_숫자범위테스트() {
+        Lotto lotto = new Lotto(lottoNumberGenerator.generate());
+        List<Integer> numbers = lotto.getNumbersAsList();
 
-        // given
-        List<Integer> lottoNumbers = lottoNumberGenerator.generate();
-
-        assertThat(lottoNumbers)
+        assertThat(numbers)
                 .allSatisfy(number -> {
                     assertThat(number)
                             .isBetween(0, 45);
@@ -26,20 +25,18 @@ public class LottoNumberGeneratorTest {
     @Test
     @DisplayName("로또번호는 6가지 숫자로 구성된다.")
     void generate_숫자개수테스트() {
+        Lotto lotto = new Lotto(lottoNumberGenerator.generate());
+        List<Integer> numbers = lotto.getNumbersAsList();
 
-        // given
-        List<Integer> lottoNumbers = lottoNumberGenerator.generate();
-
-        assertThat(lottoNumbers).hasSize(6);
+        assertThat(numbers).hasSize(6);
     }
 
     @Test
     @DisplayName("로또번호는 정렬되어 있다.")
     void generate_숫자정렬여부테스트() {
+        Lotto lotto = new Lotto(lottoNumberGenerator.generate());
+        List<Integer> numbers = lotto.getNumbersAsList();
 
-        // given
-        List<Integer> lottoNumbers = lottoNumberGenerator.generate();
-
-        assertThat(lottoNumbers).isSorted();
+        assertThat(numbers).isSorted();
     }
 }
