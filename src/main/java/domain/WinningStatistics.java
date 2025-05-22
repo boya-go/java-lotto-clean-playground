@@ -16,7 +16,7 @@ public class WinningStatistics {
     private void calculateRankCounts(final WinningLotto winningLotto, final List<Lotto> purchasedLottos) {
         for (Lotto lotto : purchasedLottos) {
             int matchCount = winningLotto.matchCount(lotto);
-            boolean matchBonusBall = lotto.contains(winningLotto.getBonusBall());
+            boolean matchBonusBall = winningLotto.matchBonusBall(lotto);
             Rank rank = Rank.matchCountOf(matchCount, matchBonusBall);
             rankCounts.put(rank, getCount(rank) + 1);
         }
