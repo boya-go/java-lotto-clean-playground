@@ -1,23 +1,24 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.function.BiPredicate;
 
 public enum Rank {
-    FIRST(6, false, 2_000_000_000),
-    SECOND(5, true,30_000_000),
-    THIRD(5, false,1_500_000),
-    FOURTH(4,false, 50_000),
-    FIFTH(3, false,5_000),
-    NONE(0, false,0);
+    FIRST(6, 2_000_000_000, (matchCount, matchBonus) -> matchCount == 6),
+    SECOND(5, 30_000_000, (matchCount, matchBonus) -> matchCount == 5 && matchBonus),
+    THIRD(5, 1_500_000, (matchCount, matchBonus) -> matchCount == 5 && !matchBonus),
+    FOURTH(4,50_000, (matchCount, matchBonus) -> matchCount == 4),
+    FIFTH(3, 5_000, (matchCount, matchBonus) -> matchCount == 3),
+    NONE(0, 0, (matchCount, matchBonus) -> matchCount < 3);
 
     private final int matchCount;
-    private final boolean matchBonusBall;
     private final long prize;
+    private final BiPredicate<Integer, Boolean> matchingRule;
 
-    Rank(int matchCount, boolean matchBonusBall, long prize) {
+    Rank(int matchCount, long prize, BiPredicate<Integer, Boolean> matchingRule) {
         this.matchCount = matchCount;
-        this.matchBonusBall = matchBonusBall;
         this.prize = prize;
+        this.matchingRule = matchingRule;
     }
 
     public int getMatchCount() {
@@ -28,17 +29,14 @@ public enum Rank {
         return prize;
     }
 
+    public boolean isMatched(int matchCount, boolean matchBonusBall) {
+        return matchingRule.test(matchCount, matchBonusBall);
+    }
+
     public static Rank matchCountOf(int matchCount, boolean matchBonusBall) {
-        if (matchCount == 5) {
-            return Arrays.stream(values())
-                    .filter(rank -> rank.matchCount == 5 && rank.matchBonusBall == matchBonusBall)
-                    .findFirst()
-                    .orElse(NONE);
-        }
         return Arrays.stream(values())
-                .filter(rank -> rank.matchCount == matchCount)
+                .filter(rank -> rank.isMatched(matchCount, matchBonusBall))
                 .findFirst()
                 .orElse(NONE);
     }
 }
-
